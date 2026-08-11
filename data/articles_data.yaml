@@ -1,0 +1,66 @@
+# 文章接口数据驱动用例
+# ============================================================
+# 一、文章创建参数化用例
+#   case_id / title / content / expect_status / expect_code
+create_cases:
+  - case_id: art_create_001
+    title: Python 接口自动化测试入门
+    content: 本文介绍 pytest 数据驱动的基本用法与分层设计。
+    expect_status: 200
+    expect_code: 0
+
+  - case_id: art_create_002
+    title: FastAPI 接口开发实战
+    content: 使用 FastAPI 快速搭建可被自动化测试调用的 Mock 服务。
+    expect_status: 200
+    expect_code: 0
+
+  - case_id: art_create_003
+    title: loguru 日志最佳实践
+    content: 在测试框架中使用 loguru 统一管理请求响应日志。
+    expect_status: 200
+    expect_code: 0
+
+# 二、鉴权失败用例(无 token / 无效 token)
+auth_fail_cases:
+  - case_id: art_auth_001
+    name: 不带 token 访问文章列表
+    method: GET
+    path: /api/articles
+    use_token: false
+    expect_status: 401
+    expect_code: 1002
+
+  - case_id: art_auth_002
+    name: 带无效 token 访问文章列表
+    method: GET
+    path: /api/articles
+    use_token: true
+    override_token: "invalid.token.value"
+    expect_status: 401
+    expect_code: 1002
+
+  - case_id: art_auth_003
+    name: 不带 token 创建文章
+    method: POST
+    path: /api/articles
+    use_token: false
+    body:
+      title: 无权限创建
+      content: 应被拒绝
+    expect_status: 401
+    expect_code: 1002
+
+# 三、文章更新数据(标题/正文各覆盖一组)
+update_cases:
+  - case_id: art_update_001
+    title: 更新后的标题-版本A
+    content: 更新后的正文-版本A
+    expect_status: 200
+    expect_code: 0
+
+  - case_id: art_update_002
+    title: 更新后的标题-版本B
+    content: 更新后的正文-版本B
+    expect_status: 200
+    expect_code: 0

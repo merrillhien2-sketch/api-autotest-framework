@@ -1,0 +1,33 @@
+# Python 虚拟环境
+venv/
+.venv/
+env/
+
+# 环境变量文件（禁止提交真实账号/密钥）
+.env
+
+# 字节码缓存
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 测试报告与缓存
+reports/*.html
+reports/*.xml
+.pytest_cache/
+.coverage
+htmlcov/
+
+# 运行时产物
+data.db
+mock_server/data.db
+
+# 日志
+logs/
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+.DS_Store

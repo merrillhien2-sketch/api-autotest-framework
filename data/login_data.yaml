@@ -1,0 +1,49 @@
+# 登录接口数据驱动用例
+# 字段说明:
+#   case_id        用例编号
+#   name           用例名称
+#   username       登录用户名
+#   password       登录密码
+#   expect_status  期望 HTTP 状态码
+#   expect_code    期望业务码(code 字段)
+#   expect_jsonpath 期望存在的 JSONPath(可选, 仅校验能取到值)
+#   expect_field     期望字段及其值(可选)
+testcases:
+  - case_id: login_001
+    name: 正确账号密码登录成功
+    username: admin
+    password: "123456"
+    expect_status: 200
+    expect_code: 0
+    expect_jsonpath: "$.data.token"
+    expect_field:
+      jsonpath: "$.data.username"
+      value: admin
+
+  - case_id: login_002
+    name: 密码错误登录失败
+    username: admin
+    password: wrong_password
+    expect_status: 401
+    expect_code: 1001
+
+  - case_id: login_003
+    name: 不存在的用户登录失败
+    username: no_such_user
+    password: "123456"
+    expect_status: 401
+    expect_code: 1001
+
+  - case_id: login_004
+    name: 用户名为空触发参数校验
+    username: ""
+    password: "123456"
+    expect_status: 422
+    expect_code: 422
+
+  - case_id: login_005
+    name: 密码为空触发参数校验
+    username: admin
+    password: ""
+    expect_status: 422
+    expect_code: 422

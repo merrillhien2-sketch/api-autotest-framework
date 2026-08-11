@@ -1,0 +1,23 @@
+# 接口自动化测试框架依赖
+# Python 3.10+ 兼容
+
+# 测试框架核心
+pytest>=8.0
+pytest-html>=4.1
+
+# HTTP 请求
+requests>=2.31
+
+# 数据驱动
+PyYAML>=6.0
+pandas>=2.0
+
+# 配置管理
+pydantic-settings>=2.0
+
+# 日志
+loguru>=0.7
+
+# 内置被测 Mock 服务
+fastapi>=0.110
+uvicorn>=0.27

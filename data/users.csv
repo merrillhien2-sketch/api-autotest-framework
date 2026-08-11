@@ -1,0 +1,4 @@
+case_id,username,email,nickname,expect_status,expect_code
+user_001,user_{rand},alice@autotest.com,爱丽丝,200,0
+user_002,user_{rand},bob@autotest.com,鲍勃,200,0
+user_003,user_{rand},carol@autotest.com,卡罗尔,200,0
